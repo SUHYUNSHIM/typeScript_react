@@ -1,0 +1,21 @@
+{
+  "name": "type_study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "tsc": "^2.0.4",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "transpile" : "tsc index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "volta" : {
+    "typescript": "^5.0.4",
+    "node": "16.15.0"
+  }
+   
+}
