@@ -1,8 +1,13 @@
-//import React from 'react';
+import React from 'react';
 import {useState} from 'react'
-import logo from './logo.svg';
 import CountryList from './CountryList';
 import './App.css';
+import styles from './styles'
+import AppCssModule from './App.module.css'
+import Footer from './Footer';
+import {
+  BasicButton, ItalicButton, UnderLineButton, WhiteUnderlineButton
+} from './Button'
 
 export type CountryType = {
   no: number;
@@ -21,6 +26,7 @@ const App = () => {
   //   { no: 3, country: "피지", visited: false },
   //   { no: 4, country: "콜롬비아", visited: false },
   // ]
+  
   const [msg,setMsg] = useState<string>("World");
   const [list,setList] = useState<Array<CountryType>>([
     { no: 1, country: "이집트", visited: false },
@@ -28,6 +34,7 @@ const App = () => {
     { no: 3, country: "피지", visited: false },
     { no: 4, country: "콜롬비아", visited: false },
   ]);
+  const [theme, setTheme] = useState<string>("basic");
 
 
   const addResult = (x: number, y: number) => {
@@ -38,14 +45,19 @@ const App = () => {
     )
   }
 
-  return (
+  return (    
     <div className="container">
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      <h2>Hello world {msg}!</h2>
-      <hr className='dash-style' />
+      <h2 className={AppCssModule.test}>By suhyun with TypeScript, hello React {msg}!</h2>
+      <hr style= {styles.dashStyle} />
       {addResult(4, 3)}
       
       <CountryList countries={list} />
+      <BasicButton>기본</BasicButton>
+      <ItalicButton>이탤릭</ItalicButton>
+      <UnderLineButton>언더라인</UnderLineButton>
+      <WhiteUnderlineButton>화이트 언더라인</WhiteUnderlineButton>
+      <Footer theme={theme}/>
     </div>
 
   )

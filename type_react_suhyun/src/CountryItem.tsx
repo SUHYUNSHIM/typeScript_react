@@ -1,5 +1,6 @@
 import React from 'react'
 import { CountryType } from './App'
+import styles from './styles'
 
 type CountryItemPropsType = {
     countryItem : CountryType;
@@ -8,7 +9,8 @@ type CountryItemPropsType = {
 const CountryItem = (props : CountryItemPropsType) => {
     let item = props.countryItem;
     return (
-        <li className={item.visited ? "list-group-item active" : "list-group-item"}>
+        <li style={styles.listItemStyle}
+            className={item.visited ? "list-group-item active" : "list-group-item"}>
             {item.country}
         </li>
         
