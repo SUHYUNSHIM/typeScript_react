@@ -2,7 +2,7 @@ import React from 'react';
 import {styled} from 'styled-components';
 
 type FooterPropsType = {
-    theme: string;
+    themename: string;
 };
 
 const Footer = (p1: FooterPropsType) => {
@@ -12,9 +12,9 @@ const Footer = (p1: FooterPropsType) => {
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background-color: ${(p2) => (p2.theme && "basic" ? "skyblue" : "yellow")};
+    background-color: ${(p2) => (p2.themename === "basic" ? "skyblue" : "yellow")};
     text-align: center;
   `;
-    return <FooterBox theme = {p1.theme}>React styled-components Test</FooterBox>;
+  return <FooterBox themename={p1.themename}>React styled-components Test</FooterBox>;
 };
 export default Footer;

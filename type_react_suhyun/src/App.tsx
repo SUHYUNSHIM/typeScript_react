@@ -57,7 +57,7 @@ const App = () => {
       <ItalicButton>이탤릭</ItalicButton>
       <UnderLineButton>언더라인</UnderLineButton>
       <WhiteUnderlineButton>화이트 언더라인</WhiteUnderlineButton>
-      <Footer theme={theme}/>
+      <Footer themename={theme}/>
     </div>
 
   )
