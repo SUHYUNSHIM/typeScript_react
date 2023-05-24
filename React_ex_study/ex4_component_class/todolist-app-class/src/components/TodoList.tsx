@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
+import { PureComponent } from "react";
 import { TodoListItemType } from "../AppContainer";
 import TodoListItem from "./TodoListItem";
 
@@ -8,11 +9,12 @@ type Props = {
   deleteTodo: Function;
 };
 
-export default class TodoList extends Component<Props> {
-  shouldComponentUpdate(nextProps: Props, nextState: {}) {
-    if(nextProps.todoList !== this.props.todoList) return true;
-    return false;  
-  }
+//export default class TodoList extends Component<Props> {
+export default class TodoList extends PureComponent<Props> {
+  // shouldComponentUpdate(nextProps: Props, nextState: {}) {
+  //   if(nextProps.todoList !== this.props.todoList) return true;
+  //   return false;  
+  // }
 
   render() {
     console.log("##TodoList 렌더")

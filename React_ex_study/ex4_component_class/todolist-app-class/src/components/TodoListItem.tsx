@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { TodoListItemType } from "../AppContainer";
 
 type Props = {
@@ -7,11 +7,12 @@ type Props = {
   toggleDone: Function;
 };
 
-export default class TodoListItem extends Component<Props> {
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    if(nextProps.todoItem !== this.props.todoItem) return true;
-    return false;
-  }
+//export default class TodoListItem extends Component<Props> {
+export default class TodoListItem extends PureComponent<Props> {
+  // shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+  //   if(nextProps.todoItem !== this.props.todoItem) return true;
+  //   return false;
+  // }
 
 
   render() {
