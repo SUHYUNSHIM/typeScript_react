@@ -49,9 +49,9 @@ const calcChecker = (props: any, propName : string, componentName : string) => {
 
 //유효성 검증 정보
 Calc.propTypes = {
-    x : PropTypes.number.isRequired,
-    y:  calcChecker,
-    oper : calcChecker,
+    x : PropTypes.number.isRequired, //어떤 타입인지 필수인지.
+    y: calcChecker, //사용자 정의 함수로 유효성 체크 
+    oper : calcChecker, //
 };
 
 Calc.defaultProps = {
