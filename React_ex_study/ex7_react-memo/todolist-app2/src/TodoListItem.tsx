@@ -18,4 +18,7 @@ const TodoListItem = (props : Props) => {
 };
 
 //export default TodoListItem;
-export default React.memo(TodoListItem)
+//export default React.memo(TodoListItem)
+export default React.memo(TodoListItem,(prevProps, nextProps) => {
+    return prevProps.todoListItem === nextProps.todoListItem;
+})
