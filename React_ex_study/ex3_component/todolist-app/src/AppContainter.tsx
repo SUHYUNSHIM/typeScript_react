@@ -25,7 +25,7 @@ const AppContainer = () => {
 
     const deleteTodo = (no:number) => {
         let index = todoList.findIndex((todo) => todo.no === no);
-        let newTodoList = produce(todoList,(draft) => {
+        let newTodoList = produce(todoList,(draft) => {  
             draft.splice(index,1);
         });
         setTodoList(newTodoList)
