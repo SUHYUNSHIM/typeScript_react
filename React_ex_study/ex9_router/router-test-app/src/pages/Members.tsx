@@ -1,11 +1,28 @@
 import React from 'react'
+import { MemberType } from '../App';
 
-type Props = {};
-const Memebers = (prop : Props) => {
+type Props = { members: Array<MemberType>};
+const Members = (props : Props) => {
+    let imgstyle = {width:90, height: 80};
+    let list = props.members.map((member)=> {
+        return (
+            <div key={member.name}
+                className="col-6 col-md-4 col-lg-3">
+                    <img src={member.photo} alt={member.name} className="img-thumbnail" style={imgstyle}></img>
+                    <br/>
+                    <h6>{member.name}</h6> 
+                    <br/>
+                    <br/>               
+            </div>
+        )
+    })
     return (
         <div className='card card-body'>
-            <h2>Memebers</h2>        
+            <h2>Memebers</h2>   
+            <div className="container">
+                <div className="row">{list}</div>
+            </div>     
         </div>
     )
 }
-export default Memebers;
+export default Members;

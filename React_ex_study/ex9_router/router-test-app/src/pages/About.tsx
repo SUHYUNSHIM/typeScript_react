@@ -1,10 +1,10 @@
 import React from 'react'
 
-type Props = {};
+type Props = {title : string};
 const About = (prop : Props) => {
     return (
         <div className='card card-body'>
-            <h2>About</h2>        
+            <h2>About{prop.title}</h2>        
         </div>
     )
 }
