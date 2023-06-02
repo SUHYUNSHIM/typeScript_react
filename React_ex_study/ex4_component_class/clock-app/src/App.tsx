@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import Clock from './Clock'
 
+//생명 주기 상태.
 type State = {
     formatString : string;
     clockVisible : boolean;
 };
-export default class App extends Component<{},State>{
+export default class App extends Component<{},State>{ //propstype,statetype
     state = {
         formatString : "HH:mm:ss",
         clockVisible : false
