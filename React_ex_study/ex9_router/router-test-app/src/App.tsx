@@ -7,6 +7,7 @@ import SongList from './pages/SongList';
 import Members from './pages/Members';
 //import SongDetail from "./pages/SongDetail";
 import Player from './pages/songs/Player'
+import SongIndex from './pages/songs/Index'
 
 export type MemberType ={name : string; photo: string;}
 export type SongType = {id : number; title : string; musician : string; youtube_link : string};
@@ -44,6 +45,7 @@ const App = () => {
           {/* <Route path="/songs/:id" element={<SongDetail songs={songs} />} /> */}
           <Route path="/about" element={<About title={'여우와 늙다리들'}/>}/>
           <Route path="/songs" element={<SongList songs={songs}/>}>
+            <Route index element={<SongIndex/>}/>
             <Route path=":id" element={<Player songs={songs}/>}/>
           </Route>
         </Routes>  
