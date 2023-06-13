@@ -9,7 +9,7 @@ const SongList = (props: Props) => {
 
   let list = props.songs.map((song) => {
     let cn = "list-group-item";
-    cn += param_id === song.id ? "lisa-group-item-secondary" : "";
+    cn += param_id === song.id ? " list-group-item-secondary" : "";
     return (
       <li className={cn} key={song.id}>
         <Link to={`/songs/${song.id}`} style={{ textDecoration: "none" }}>
@@ -23,9 +23,10 @@ const SongList = (props: Props) => {
   });
   return (
     <div>
-      <h2 className="mt-5">Song List</h2>
+      <h2 className="m-5">Song List</h2>
       <ul className="list-group">{list}</ul>
-      <Outlet/>
+      {/* <Outlet/> */}
+      <Outlet context={{songs : props.songs}}/>
     </div>
   );
 };
