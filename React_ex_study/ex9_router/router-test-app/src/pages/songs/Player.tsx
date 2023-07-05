@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Navigate, useNavigate, useOutletContext } from "react-router";
+import { useParams, useNavigate, useOutletContext } from "react-router";
 import { Link } from "react-router-dom";
 import Youtube from "react-youtube";
 import { SongType } from "../../App";
