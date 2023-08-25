@@ -197,3 +197,80 @@ const kimchi = new Word("김치","한국의 음식")
 const dict = new Dict()
 dict.add(kimchi)
 dict.def("kimchi")
+
+
+//인터페이스
+type Nickname = string //type alias
+type Health = number
+type Friends = Array<string>
+type Player = { //object 모양을 특정한다. 
+    nickname : Nickname,
+    healthBar : Health
+}
+
+const nico : Player = {
+    nickname : 'nococo',
+    healthBar : 123
+}
+
+type Food = string;
+const kimchi:Food = 'delicious'
+
+type Team = "red" | "blue" | "yellow" //concrete 타입의 특정 값 
+type Health2 = 1 | 5 | 10
+type Player2 = { /// interface Player2 {}
+    nickname : string,
+    team : Team
+    health : Health2
+}
+const nico2 : Player2 = {
+    nickname : "nico",
+    team : "yellow",
+    health : 1
+}
+
+//interface는 객체의 모양을 타입스크립트에게 설명해 주기 위해서만 사용됨 
+interface Player3 { /// interface Player2 {}
+    nickname : string,
+    team : Team
+    health : Health2
+}
+
+///
+interface User {
+    name: string
+}
+interface Player4 extends User {
+    
+}
+const nico3 : Player4 = {
+    name : "nico"
+}
+//
+//위의 내용을 type으로 바꾸면
+type User_t = {
+    readonly name: string //readonly 추가 가능 
+}
+type Player5 = User & {
+
+}
+const nico4 : Player5 = {
+    name : "nico"
+}
+
+//인터페이스 내용 합침 --> 타입으로는 할 수 없음
+interface UserA {
+    name: string
+}
+interface UserA {
+    lastName : string
+}
+interface UserA {
+    health : number
+}
+
+const nicoo : UserA = {
+    name : "nico",
+    lastName : "lala",
+    health : 1
+}
