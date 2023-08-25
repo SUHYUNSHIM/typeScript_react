@@ -158,3 +158,42 @@ class PlayerE extends User {
 
 const suhyun2 = new PlayerE('shim','suhyun','suhyun')
 //suhyun.firstName . private 불가. protected도 불가. 외부는 둘다 모두 불가. public을 사용해야 함. 
+
+
+type Words = {
+    [key:string] : string // string 만을 키,속성으로 가지는 객체. key의 명칭은 whatever. property의 이름은 모르지만 타입만 알 때 사용.
+}
+
+//
+let dictEx : Words = {
+    "potato" : "food" // key 타입이 number면 1:"food"
+}
+
+class Dict {
+    private words : Words //초기화를 해야 함. 수동 초기화 하기.
+    constructor(){
+        this.words = {}
+    }
+    add(word : Word){ //클래스를 타입으로 사용.
+        if(this.words[word.term] === undefined){
+            this.words[word.term] = word.def
+        }
+    } 
+    def(term : string){
+        return this.words[term]
+    }
+    //업데이트
+    //삭제
+
+}
+
+class Word {
+    constructor(
+        public term : string,
+        public def : string
+    ){}
+}
+const kimchi = new Word("김치","한국의 음식")
+const dict = new Dict()
+dict.add(kimchi)
+dict.def("kimchi")
