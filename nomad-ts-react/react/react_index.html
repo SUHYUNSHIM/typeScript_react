@@ -27,16 +27,47 @@
         // function render(){
         //     ReactDOM.render(<App/>, root)
         // }
-        function App(){ 
-            const [counter, setCounter] = React.useState(0)
-            const onClick = () => {
-                //setCounter(counter+1)
-                setCounter(current => current + 1) //함수 전달 
-            };
+        function App(){  
+            const [amount, setAmount] = React.useState(0) 
+            const [inverted, setInverted]  = React.useState(false) 
+            const onChange = (event) => {
+                setAmount(event.target.value)         
+            }  
+            const reset = () => {
+                setAmount(0)
+            } 
+            const onFlip = () => {
+                reset();
+                setInverted((current) => !current)        
+            }     
             return(
                 <div>
-                    <h3>Total clicks : {counter}</h3>                 
-                    <button onClick={onClick}>Click me</button>
+                    <h1 className="hi">Super Converter</h1>
+                    <div>                         
+                        <input 
+                            value = {inverted ? amount * 60 : amount}                            
+                            id ="minutes"
+                            placeholder="Minutes"
+                            type="number"
+                            onChange={onChange}
+                            disabled={inverted}
+                        />
+                        <label htmlFor="minutes">분</label>    
+                    </div>    
+                    <h4>{amount}를 바꾸려고 한다. </h4>
+                    <div>                                   
+                        <input
+                            value = {inverted ? amount : Math.round(amount/60)}                            
+                            id="hours"
+                            placeholder="Hours"
+                            type="number"
+                            onChange={onChange}
+                            disabled={!inverted}
+                        />
+                        <label htmlFor="hours">시간</label>     
+                    </div>  
+                    <button onClick={reset}>Reset</button>  
+                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>    
                 </div>
             );
         }
