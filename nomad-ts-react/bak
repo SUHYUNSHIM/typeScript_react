@@ -1,0 +1,314 @@
+  let a = [1,2]
+  type Age = number
+  type Player = {
+    name : string,
+    age? : Age
+  }
+  const suhyun : Player = {
+    name : "suhyun"
+  }
+
+  function playerMaker(name:string) : Player{
+    return {
+        name
+    }
+  }
+  const junghyun = playerMaker("junghyun")
+  junghyun.age = 24
+
+  const playerMaker2 = (name : string) :Player => ({name})
+
+  type Add = (a:number, b: number) => number;
+  const add:Add = (a,b) => a+b
+
+  type Config = {
+    path : string,
+    state : object
+  }
+  //오버로딩 예시 
+  type Push = {
+    (path:string):void
+    (config : Config) : void
+  }
+
+  const push : Push = (config) => {
+    if(typeof config === "string"){
+      console.log(config)
+    }
+    else{
+      console.log(config.path)
+    }
+  }
+
+//
+  type Add2 = {
+    (a:number, b : number) : number
+    (a:number , b: number, c : number) : number
+  }
+  const add2 : Add2 = (a,b,c?:number) => {
+    if(c) return a+b+c
+    return a+b 
+  }
+
+//polyMorphism
+  type SuperPrint = {
+    (arr:number[]) : void
+    (arr:boolean[]) : void
+  }
+  const superPrint : SuperPrint = (arr) => {
+    arr.forEach(i => {
+      console.log(i)
+    })
+  }
+  superPrint([1,2,3,4])
+  superPrint([true,false,true])
+
+  //call signature를 작성할 때 들어올 확실한 타입을 모를 때 generic을 사용한다. 
+
+type SuperPrint2 = {
+  <TypePlaceholder>(arr : TypePlaceholder[]) : void
+}
+  const superPrint2 : SuperPrint2 = (arr) => {
+    arr.forEach(i => {
+      console.log(i)
+    })
+  }
+superPrint2([1,2,3,4])
+superPrint2([true,false,true])
+superPrint2(["1",2,true,[1,2]])
+
+//polyMorphism. generic
+type SuperPrint3 = {
+  <placeholder>(arr : placeholder[]) : placeholder
+}
+const superPrint3 : SuperPrint3 = arr => arr[0]
+const returnA = superPrint3(['1',2,3])
+const returnB = superPrint3([1,2,3])
+const returnC = superPrint3([true, 1, false])
+
+//타입스크립트가 타입을 유추하게 한다. 배열임을 알고, 그 원소 중 하나를 return 한다는 것을 
+//call-signature를 통해 정의하였다. 
+type SuperPrintA = {
+  <T>(arr : T[]) : T
+}
+
+type SuperPrintB = <T,M>(a:T[], b:M) => T   //첫번째 param은 배열, 두번째 param은 단일 값.
+//any와 다르다. 요청에 따라 call signature를 생성한다는 뜻. 
+
+//라이브러리를 만들거나, 다른 개발자가 사용할 기능을 개발하는 경우에 제너릭이 유용!
+
+function superPrintC<V>(a:V[]){
+  return a[0]
+}
+//
+type Person<E> = {
+  name : string
+  extraInfo : E
+}
+type NicoExtra = {
+  favFood : string
+}
+type NicoPlayer = Person<NicoExtra>
+type PersonA = Person<{favFood:string}>
+
+const nico : Person<{favFood:string}> = {
+  name : "nico",
+  extraInfo : {
+    favFood : "kimchi"
+  }
+}
+
+const lynn : Person<null> = {
+  name : "lynn",
+  extraInfo : null
+}
+
+//제너릭 예제
+type A = Array<number>
+let aA :A = [1,2,3,4]
+
+// == number[]
+function printAllNumbers(arr:Array<number>){
+
+}
+//react.js 
+//useState<number>
+////////class
+abstract class User{ //추상 클래스, 다른 클래스가 상속받을 수 있는 클래스 . 직접 새 인스턴스 x. 
+    constructor(
+        //private firstName : string, //private은 상속해도 자식 클래스에서 접근 불가. 인스턴스 밖에서 접근 불가.
+        protected firstName : string,
+        private lastName : string, //외부로부터는 보호되고, 자식 클래스에섯 사용되기를 원하면 protected를 쓴다. 
+        private nickname : string
+    ){}
+    abstract getNickName():void //추상 메소드, 추상 클래스를 상속받는 것들이 구현해야 함. 
+    getFullName(){
+        return `${this.firstName} ${this.lastName}`
+    }
+}
+
+class PlayerE extends User {
+    getNickName(){console.log(this.firstName)}
+}
+
+const suhyun2 = new PlayerE('shim','suhyun','suhyun')
+//suhyun.firstName . private 불가. protected도 불가. 외부는 둘다 모두 불가. public을 사용해야 함. 
+
+
+type Words = {
+    [key:string] : string // string 만을 키,속성으로 가지는 객체. key의 명칭은 whatever. property의 이름은 모르지만 타입만 알 때 사용.
+}
+
+//
+let dictEx : Words = {
+    "potato" : "food" // key 타입이 number면 1:"food"
+}
+
+class Dict {
+    private words : Words //초기화를 해야 함. 수동 초기화 하기.
+    constructor(){
+        this.words = {}
+    }
+    add(word : Word){ //클래스를 타입으로 사용.
+        if(this.words[word.term] === undefined){
+            this.words[word.term] = word.def
+        }
+    } 
+    def(term : string){
+        return this.words[term]
+    }
+    //업데이트
+    //삭제
+
+}
+
+class Word {
+    constructor(
+        public term : string,
+        public def : string
+    ){}
+}
+const kimchi = new Word("김치","한국의 음식")
+const dict = new Dict()
+dict.add(kimchi)
+dict.def("kimchi")
+
+
+//인터페이스
+type Nickname = string //type alias
+type Health = number
+type Friends = Array<string>
+type Player = { //object 모양을 특정한다. 
+    nickname : Nickname,
+    healthBar : Health
+}
+
+const nico : Player = {
+    nickname : 'nococo',
+    healthBar : 123
+}
+
+type Food = string;
+const kimchi:Food = 'delicious'
+
+type Team = "red" | "blue" | "yellow" //concrete 타입의 특정 값 
+type Health2 = 1 | 5 | 10
+type Player2 = { /// interface Player2 {}
+    nickname : string,
+    team : Team
+    health : Health2
+}
+const nico2 : Player2 = {
+    nickname : "nico",
+    team : "yellow",
+    health : 1
+}
+
+//interface는 객체의 모양을 타입스크립트에게 설명해 주기 위해서만 사용됨 
+interface Player3 { /// interface Player2 {}
+    nickname : string,
+    team : Team
+    health : Health2
+}
+
+///
+interface User {
+    name: string
+}
+interface Player4 extends User {
+    
+}
+const nico3 : Player4 = {
+    name : "nico"
+}
+//
+//위의 내용을 type으로 바꾸면
+type User_t = {
+    readonly name: string //readonly 추가 가능 
+}
+type Player5 = User & {
+
+}
+const nico4 : Player5 = {
+    name : "nico"
+}
+
+//인터페이스 내용 합침 --> 타입으로는 할 수 없음
+interface UserA {
+    name: string
+}
+interface UserA {
+    lastName : string
+}
+interface UserA {
+    health : number
+}
+
+const nicoo : UserA = {
+    name : "nico",
+    lastName : "lala",
+    health : 1
+}
+
+abstract class UserF {
+  constructor(
+    protected firstName : string,
+    protected lastName : string
+  ){}
+  abstract sayHi(name:string):string
+  abstract fullName():string
+}
+class PlayerF extends UserF {
+  fullName(){
+    return `${this.firstName} ${this.lastName}`
+  }
+  sayHi(name:string){
+    return `Hello ${name}. MY name is ${this.fullName()}`
+  }
+}
+//추상 클래스 : 상속받는 다른 클래스가 가질 property와
+//메소드를 지정하도록 해준다. 
+
+interface UserG {
+  firstName : string,
+  lastName : string,
+  sayHi(name:string):string
+  fullName():string
+}
+interface Human{
+  health : number
+}
+
+class PlayerG implements UserG,Human {
+  constructor(
+    public firstName : string, //private이나 protected를 쓸 수 없음. 인터페이스 속성 따름 
+    public lastName : string,
+    public health : number
+    ){}
+  fullName(){
+    return `${this.firstName} ${this.lastName}`
+  }
+  sayHi(name:string){
+    return `Hello ${name}. MY name is ${this.fullName()}`
+  }
+}
