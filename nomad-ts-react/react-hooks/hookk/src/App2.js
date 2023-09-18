@@ -11,9 +11,15 @@ function App2(){
         setName(event.target.value)
     }
 
+    //마운트가 될 때 그리고 count가 변할 때마다 실행됨.
     useEffect(() => {
         
     },[count])
+
+    //마운트 될 때만 실행.
+    useEffect(() => {
+        
+    },[])
 
     return (
         <div>
