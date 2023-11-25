@@ -1,8 +1,11 @@
-import NavBar from "@/components/NavBar";
+import Shim from "@/components/Shim";
 
 export default function Potato(){
-    return <div>
-        <NavBar/>
-        <h1>About</h1>
-    </div>
+    return (
+        <div>
+            <Shim title='About'/>
+            <title>About | Next Movies</title>
+            <h1>About</h1>
+        </div>
+    )
 }

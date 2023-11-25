@@ -1,14 +1,13 @@
-import {useState} from "react";
-import NavBar from "@/components/NavBar";
+import Head from "next/head"
+import Shim from "@/components/Shim";
 
 export default function Home(){
-    const [counter, setCounter] = useState(0)
-    //return "hi"
     return (
         <div>
-            <h1>Hello {counter}</h1>
-            {/*<button onClick={() => setCounter((prev) => prev+1)}>+</button>*/}
-            <NavBar/>
+           <Shim title="Home"/>
+                <title>Home | next Movies</title>
+
+            <h1 className='active'>Hello</h1>
         </div>
     )
 }
